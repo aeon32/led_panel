@@ -4,19 +4,47 @@
 
 #include <iostream>
 
+#include <libledmatrix/ledmatrix.h>
 #include <yqnet/yqlib.h>
 
-char * IP = "127.0.0.1";
-const int PORT = 80;
-wchar_t * LOGIN = L"guest";
+#include <unistd.h>
+
+#include "config.h"
+
+#include <string>
+
+const char * IP = "192.168.0.199";
+const uint16_t PORT = 80;
+const char * LOGIN = "guest";
 
 
 
 void test1()
 {
 
-    int err = check_time(IP, PORT, LOGIN, LOGIN);
-    std::cout <<"error "<<err<<std::endl;
+
+    struct LEDDevice * device = leddevice_new(IP, PORT, LOGIN);
+    if (device)
+    {
+
+        struct LEDProgram * program = ledprogram_new(device, "program 1");
+
+        led_program_add_text(program, "mytest", 0, 0, 30, 20, 100);
+
+        ledprogram_send_to_player(program);
+
+
+        sleep(1);
+
+        ledprogram_free(program);
+        leddevice_free(device);
+    };
+
+
+
+
+    //int err = check_time(IP, PORT, LOGIN, LOGIN);
+    //std::cout <<"error "<<err<<std::endl;
 
     /*
     char* ip = "192.168.89.156";
@@ -40,8 +68,40 @@ void test1()
 }
 
 
+void test2()
+{
+    std::string file = std::string(PROJECT_DATADIR) + "/" + "1.bmp";
+
+    struct LEDDevice * device = leddevice_new(IP, PORT, LOGIN);
+    if (device)
+    {
+        struct LEDProgram * program = ledprogram_new(device, "program 5");
+
+
+        led_program_clear(program);
+
+        //led_program_add_dynamics(program, "Hi Вася asdgg!", 0, 0, 64, 32, 100);
+        led_program_add_dynamics_picture(program, file.c_str(), 0, 0, 128, 96, 100);
+
+
+
+        led_program_send(program);
+
+
+
+
+        ledprogram_free(program);
+        leddevice_free(device);
+
+
+
+    };
+
+
+}
+
 int main(int argc, char **argv)
 {
-    test1();
+    test2();
     return 0;
 }

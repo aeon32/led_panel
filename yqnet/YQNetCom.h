@@ -19,22 +19,24 @@
 #define _CALL_STD __stdcall
 #endif
 #else
-#define LEDNETSDK_API extern "C"
+#define LEDNETSDK_API
 #define BYTE unsigned char
 #define _CALL_STD  
 #endif
 
 
-
-typedef struct card
+typedef  struct card
 {
-	char ip[20];//\BF\D8\D6\C6\C6\F7\B5\D8ַ
-	char barcode[17];//\BF\D8\D6\C6\C6\F7\CC\F5\D0\CE\C2\EB
-}card_unit;
+    char ip[20];           //\BF\D8\D6\C6\C6\F7\B5\D8ַ
+    char barcode[17];       //\BF\D8\D6\C6\C6\F7\CC\F5\D0\CE\C2\EB
+} card_unit;
+
+
+
 typedef struct _CARD_SERVER
 {
 	char barcode[17];//\BF\D8\D6\C6\C6\F7\CC\F5\D0\CE
-}server_card;
+} server_card;
 
 
 #ifdef __cplusplus
@@ -206,6 +208,7 @@ LEDNETSDK_API int _CALL_STD add_broder(unsigned long program, unsigned long brod
 //			update_frequency\A3\BA\B7ſ\D5""\BC\B4\BF\C9 
 //			transparency:͸\C3\F7\B6\C8
 // ˵\C3\F7\A3\BA	\CC\ED\BCӶ\AF̬\C7\F8
+LEDNETSDK_API int _CALL_STD add_dynamic(unsigned long program, unsigned long dynamic_area, int dynamic_id, int x, int y, int w, int h, int relative_program, int run_mode, _TEXT_CHAR* update_frequency, int transparency);
 LEDNETSDK_API int _CALL_STD add_dynamic(unsigned long program, unsigned long dynamic_area, int dynamic_id, int x, int y, int w, int h, int relative_program, int run_mode, _TEXT_CHAR* update_frequency, int transparency);
 
 LEDNETSDK_API int _CALL_STD add_colorful_subtitle(unsigned long program, unsigned long colorful_subtitle_area, int x, int y, int w, int h);
