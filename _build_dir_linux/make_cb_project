@@ -5,4 +5,4 @@ TARGET_CONF=DEVELOP
 TOOLCHAIN_FILE="${scriptdir}/linux-toolchain.cmake"
 export CMAKE=cmake
 ${CMAKE}  -G"CodeBlocks - Unix Makefiles"  -DCMAKE_TOOLCHAIN_FILE="${TOOLCHAIN_FILE}" -DTARGET_CONF=$TARGET_CONF ../
-python2.7 codeblocks_processor.py
+#python3 codeblocks_processor.py

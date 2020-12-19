@@ -209,7 +209,7 @@ LEDNETSDK_API int _CALL_STD add_broder(unsigned long program, unsigned long brod
 //			transparency:͸\C3\F7\B6\C8
 // ˵\C3\F7\A3\BA	\CC\ED\BCӶ\AF̬\C7\F8
 LEDNETSDK_API int _CALL_STD add_dynamic(unsigned long program, unsigned long dynamic_area, int dynamic_id, int x, int y, int w, int h, int relative_program, int run_mode, _TEXT_CHAR* update_frequency, int transparency);
-LEDNETSDK_API int _CALL_STD add_dynamic(unsigned long program, unsigned long dynamic_area, int dynamic_id, int x, int y, int w, int h, int relative_program, int run_mode, _TEXT_CHAR* update_frequency, int transparency);
+
 
 LEDNETSDK_API int _CALL_STD add_colorful_subtitle(unsigned long program, unsigned long colorful_subtitle_area, int x, int y, int w, int h);
 

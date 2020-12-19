@@ -226,7 +226,7 @@ void led_program_add_dynamics(struct LEDProgram * program, const char * text, in
     unsigned long dynamic_area = create_dynamic();
 
     int err = add_dynamic_unit(dynamic_area, dynamic_type, display_effects, display_speed, stay_time, tmpFileName, gif_flag, bg_color, 12, font, color, font_attributes, align_h, align_v, 0, 0, 0);
-    err = add_dynamic(program->program, dynamic_area, program->device->dynamicId++, x, y, w, h, -1, 0, "0", 100);
+    err = add_dynamic(program->program, dynamic_area, program->device->dynamicId++, x, y, w, h, -1, 0, "0", transparency);
 
     delete_dynamic(dynamic_area);
 
@@ -273,7 +273,7 @@ void led_program_add_dynamics_picture(struct LEDProgram * program, const char * 
 
 void led_program_clear(struct LEDProgram * program)
 {
-    clear_dynamic(program->device->ipaddr, program->device->port, program->device->username, program->device->username);
+    clear_ddynamic(program->device->ipaddr, program->device->port, program->device->username, program->device->username);
 
 };
 void test_dynamics(struct LEDDevice * device)

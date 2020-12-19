@@ -22,7 +22,9 @@ MESSAGE(outdir "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
 
 ADD_CUSTOM_COMMAND(
         OUTPUT "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libyqnet.so" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libboost_system.so.1.53.0" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libboost_thread.so.1.53.0" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libboost_filesystem.so.1.53.0" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libboost_date_time.so.1.53.0"
-        COMMAND ${CMAKE_COMMAND} -E copy "${${SUBPROJECT}_SOURCE_DIR}/libyqnet.so" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libyqnet.so"
+        COMMAND ${CMAKE_COMMAND} -E copy "${${SUBPROJECT}_SOURCE_DIR}/libyqnet.so" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libyqnet.so.aux"
+        COMMAND patchelf --set-rpath "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libyqnet.so.aux"
+        COMMAND ${CMAKE_COMMAND} -E rename "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libyqnet.so.aux" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libyqnet.so"
 
         COMMAND ${CMAKE_COMMAND} -E copy "${${SUBPROJECT}_SOURCE_DIR}/libboost_system.so.1.53.0" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libboost_system.so.1.53.0"
         COMMAND ${CMAKE_COMMAND} -E copy "${${SUBPROJECT}_SOURCE_DIR}/libboost_thread.so.1.53.0" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libboost_thread.so.1.53.0"
